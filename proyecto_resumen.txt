@@ -1,0 +1,48 @@
+RESUMEN DEL PROYECTO - OfflineShop Backend
+==========================================
+
+TIPO DE PROYECTO:
+- Backend API REST con NestJS (Node.js)
+- Base de datos SQLite (offlineshop.db)
+- ORM: TypeORM
+
+ESTRUCTURA ACTUAL:
+
+1. MODULO PRODUCTS (src/products/)
+   - Entity: Product con campos:
+     * id, name, price, cost, stock, description, sku
+     * isActive, needs_sync, created_at, updated_at
+   - DTOs: CreateProductDto, UpdateProductDto
+   - CRUD completo: create, findAll, findOne, update, remove
+   - Ruta base: /products
+
+2. MODULO SALES (src/sales/)
+   - Entity: Sale con campos:
+     * id, product_id, quantity, unit_price, total
+     * needs_sync, created_at
+   - DTOs: CreateSaleDto, UpdateSaleDto
+   - CRUD completo: create, findAll, findOne, update, remove
+   - Ruta base: /sales
+
+3. CONFIGURACIÓN (app.module.ts):
+   - Base de datos SQLite en: data/offlineshop.db
+   - sincronización automática activada (synchronize: true)
+
+TECNOLOGÍAS:
+- NestJS 11.x
+- TypeORM 0.3.x
+- SQLite3
+- TypeScript 5.x
+- Jest (testing)
+- Docker
+
+DOCKERIZACIÓN:
+- Dockerfile: Node 18 Alpine, producción
+- docker-compose.yml: servicio con volumen para persistencia de DB
+- Puerto: 3000
+
+ESTADO:
+- Proyecto estructura básica implementada
+- CRUD completo para Products y Sales
+- Flags needs_sync para sincronización offline
+- Dockerización completa lista para despliegue
